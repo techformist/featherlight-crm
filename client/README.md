@@ -1,19 +1,24 @@
-# vue-vuetify-api-boost
+# Featherlight CRM Client
 
 ## What is this?
 
-This repository is a starter project based on -
+This is the client application for a totally real-world app - Featherlight CRM.
+
+See -
+
+- https://techformist.com/learn-feathersjs-build-app/
+- https://techformist.com/learn-feathersjs-realworld-app-client-app/
+
+This application makes use of -
 
 1. Vue CLI
 1. Vuex + Pathify
 1. Vuetify + standard layouts + dashboard
-1. Axios for using APIs
+1. Feathers-Vuex
 
-The objective is to keep things simple for simple client/server projects.
+Originally cloned from [Vuetify booster app](https://github.com/techformist/vue-vuetify-api-boost/) because I am lazy to create awesome things from scratch.
 
 ## Project setup
-
-Setup like any other Vue project.
 
 ```
 npm install
@@ -34,9 +39,3 @@ npm run build
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-## Partner Projects
-
-See the following for the `boost` server side boilerplates that play nice with this Vue project -
-
-- [Adonis v4.1](https://github.com/techformist/adonis41-api-boost)

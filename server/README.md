@@ -1,6 +1,19 @@
-# servero
+# Featherlight CRM Server
 
-> 
+## What is this?
+
+This is the server application for a totally real-world app - Featherlight CRM.
+
+See -
+
+- https://techformist.com/learn-feathersjs-build-app/
+- https://techformist.com/learn-feathersjs-realworld-app-client-app/
+
+We build great things on FeathersJS backend, and have the following components -
+
+1. FeathersJS
+1. ObjectionJS ORM + Knex query builder
+1. Postgres
 
 ## About
 
@@ -13,20 +26,20 @@ Getting up and running is as easy as 1, 2, 3.
 1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
 2. Install your dependencies
 
-    ```
-    cd path/to/servero
-    npm install
-    ```
+   ```
+   cd path/to/servero
+   npm install
+   ```
 
 3. Start your app
 
-    ```
-    npm start
-    ```
+   ```
+   npm start
+   ```
 
 ## Testing
 
-Simply run `npm test` and all your tests in the `test/` directory will be run.
+We are really smart people and do not need to test anything we build.
 
 ## Scaffolding
 
