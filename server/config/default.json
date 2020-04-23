@@ -1,0 +1,42 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "authentication": {
+    "entity": "user",
+    "service": "users",
+    "secret": "JxZ3HNZrSlf+lMjLAXrULHbWlg4=",
+    "authStrategies": ["jwt", "local"],
+    "jwtOptions": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "usernameField": "email",
+      "passwordField": "password"
+    }
+  },
+  "postgres": {
+    "client": "pg",
+    "connection": "postgres://postgres:@localhost:5432/t_2",
+    "migrations": {
+      "directory": "../database/migrations",
+      "tableName": "knex_migrations"
+    },
+    "seeds": {
+      "directory": "../database/seeds"
+    }
+  },
+  "appconf": {
+    "admin_roles": ["admin"]
+  }
+}
