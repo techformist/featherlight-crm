@@ -7,11 +7,12 @@
           <v-row>
             <v-col cols="12">
               <p class="mt-6 display-1 font-weight-bold">
-                We make awesome things.
+                Featherlight CRM
               </p>
               <p class="headline">
-                <span class="amber--text">You</span>
-                can too.
+                An app does not get more
+                <span class="amber--text">real</span>
+                than this.
               </p>
             </v-col>
 

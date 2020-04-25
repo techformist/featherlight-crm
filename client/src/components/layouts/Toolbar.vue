@@ -12,7 +12,7 @@
           max-width="50px"
         />
       </router-link>
-      <span class="title ml-1">Awesome Monkey</span>
+      <span class="title ml-1"></span>
       <!-- <span class="caption grey--text text-lighten-5">beta</span> -->
 
       <v-spacer></v-spacer>
