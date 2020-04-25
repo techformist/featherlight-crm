@@ -1,6 +1,6 @@
 <template>
   <Panel title="Register">
-    <template slot="content">
+    <template slot="content" v-if="item">
       <v-container grid-list-mg text-xs-center class="pt-5">
         <FeathersVuexFormWrapper :item="item" watch>
           <template v-slot="{ clone, save, reset }">
@@ -18,7 +18,7 @@
                     label="Full Name"
                     autocomplete="name"
                     :rules="[rules.required]"
-                    v-model="user['name']"
+                    v-model="item['name']"
                   ></v-text-field>
                 </v-col>
 
@@ -28,7 +28,7 @@
                     autocomplete="userid"
                     label="Enter your email"
                     :rules="[rules.required, rules.userlen, rules.email]"
-                    v-model="user['email']"
+                    v-model="item['email']"
                   >
                     <template slot="append">
                       <v-icon>mdi-account</v-icon>
@@ -40,7 +40,7 @@
                   <v-text-field
                     name="password"
                     autocomplete="password"
-                    v-model="user['password']"
+                    v-model="item['password']"
                     label="Password"
                     hint="At least 8 characters"
                     :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
@@ -79,7 +79,6 @@
 <script>
 import { mapMutations } from "vuex";
 import { FeathersVuexFormWrapper } from "feathers-vuex";
-import { models } from "feathers-vuex";
 
 import Panel from "../components/layouts/Panel";
 import PgtUtilMix from "../mixins/PgtUtilMix.vue";
@@ -91,22 +90,13 @@ export default {
     return {
       value: String,
       validInput: true,
-      user: {},
+      item: null,
     };
   },
 
-  computed: {
-    // item() {
-    //   const { User } = this.$FeathersVuex.api;
-    //   return new User();
-    // },
-  },
-
-  created() {
-    const { User } = models.api;
-    console.log("User: ", User);
-    const userModel = new User();
-    this.user = userModel.clone();
+  mounted() {
+    const { User } = this.$FeathersVuex.api;
+    this.item = new User();
   },
 
   methods: {
@@ -125,14 +115,13 @@ export default {
       this.$router.push("/login");
     },
 
-    showError() {
+    showError(e) {
       // you can do other housekeeping here.
       this.setSnack({ message: "Error validating data.", color: "error" });
     },
 
     validateAndRegister() {
-      // return this.$refs.form.validate();
-      if (this.$refs.form.validate()) this.user.commit();
+      return this.$refs.form.validate();
     },
   },
 };
