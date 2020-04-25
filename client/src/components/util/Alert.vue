@@ -13,23 +13,23 @@
 </template>
 
 <script>
-import { sync } from "vuex-pathify";
+import { mapState } from "vuex";
 
 export default {
   data() {
     return {
       show: false,
       message: "",
-      type: "error"
+      type: "error",
     };
   },
   computed: {
-    alert: sync("alert/alert")
+    ...mapState("alert", ["alert"]),
   },
   methods: {
     closeAlert() {
       this.alert["message"] = "";
-    }
-  }
+    },
+  },
 };
 </script>

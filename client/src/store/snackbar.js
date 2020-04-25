@@ -1,8 +1,6 @@
-import { make } from "vuex-pathify";
-
 const getDefaultState = () => {
   return {
-    snack: {}
+    snack: {},
   };
 };
 const state = getDefaultState();
@@ -12,10 +10,9 @@ export default {
   name: "snackbar",
   state: state,
   mutations: {
-    ...make.mutations(state),
     // ok, I am lazy!
     setSnack(state, showSnack) {
       state.snack = { ...showSnack };
-    }
-  }
+    },
+  },
 };

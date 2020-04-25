@@ -1,10 +1,6 @@
-import { make } from "vuex-pathify";
-
 const getDefaultState = () => {
   return {
     leftDrawOpen: false,
-    rightDrawOpen: false,
-    rightDrawEnabled: false
   };
 };
 const state = getDefaultState();
@@ -14,6 +10,8 @@ export default {
   name: "pref",
   state: state,
   mutations: {
-    ...make.mutations(state)
-  }
+    setLeftDrawOpen(state, val) {
+      state.leftDrawOpen = val;
+    },
+  },
 };

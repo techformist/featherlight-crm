@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import store from "../store/index";
 
 export default async (reqType, reqURL, data) => {
@@ -7,28 +7,28 @@ export default async (reqType, reqURL, data) => {
 
   const options = {
     headers: {
-      Authorization: `Bearer ${store.state.authentication.token}`
-    }
+      Authorization: `Bearer ${store.state.authentication.token}`,
+    },
   };
 
   try {
     switch (reqType) {
       case "post":
-        return await axios.post(
-          store.state.baseURL + "/" + reqURL,
-          data,
-          options
-        );
+      // return await axios.post(
+      //   store.state.baseURL + "/" + reqURL,
+      //   data,
+      //   options
+      // );
 
       case "patch":
-        return await axios.patch(
-          store.state.baseURL + "/" + reqURL,
-          data,
-          options
-        );
+      // return await axios.patch(
+      //   store.state.baseURL + "/" + reqURL,
+      //   data,
+      //   options
+      // );
 
       case "get":
-        return await axios.get(store.state.baseURL + "/" + reqURL, options);
+      // return await axios.get(store.state.baseURL + "/" + reqURL, options);
     }
   } catch (e) {
     const msgPrefix = ["post", "patch"].includes(reqType)
@@ -48,7 +48,7 @@ export default async (reqType, reqURL, data) => {
       err["message"].includes("E_JWT_TOKEN_EXPIRED")
     ) {
       errMsg = "Your session has expired. Re-login to continue.";
-      store.commit("authentication/logout");
+      this.$store.dispatch("auth/logout");
     }
 
     store.commit("alert/setAlertMsg", `${msgPrefix} ${errMsg}`);

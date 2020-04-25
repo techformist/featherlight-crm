@@ -7,7 +7,7 @@ This is the server application for a totally real-world app - Featherlight CRM.
 See -
 
 - https://techformist.com/learn-feathersjs-build-app/
-- https://techformist.com/learn-feathersjs-realworld-app-client-app/
+- https://techformist.com/learn-feathersjs-realworld-client-app/
 
 We build great things on FeathersJS backend, and have the following components -
 

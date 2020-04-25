@@ -1,8 +1,6 @@
-import { make } from "vuex-pathify";
-
 const getDefaultState = () => {
   return {
-    alert: {}
+    alert: {},
   };
 };
 const state = getDefaultState();
@@ -14,10 +12,8 @@ export default {
   state: state,
 
   mutations: {
-    ...make.mutations(state),
-
     setAlertMsg(state, alertMsg) {
       state.alert = { message: alertMsg };
-    }
-  }
+    },
+  },
 };

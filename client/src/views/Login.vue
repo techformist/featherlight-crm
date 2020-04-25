@@ -2,21 +2,17 @@
   <Panel title="Login">
     <template slot="content">
       <v-container grid-list-md class="pt-5">
-        <v-form
-          ref="form"
-          v-model="validInput"
-          @submit.prevent="validateAndLogin"
-        >
+        <v-form ref="form" v-model="validInput">
           <v-row justify="center">
             <v-col cols="12" md="6" class="pt-3">
               <v-text-field
-                v-model="registerUserId"
+                v-model="loginEmail"
                 name="userid"
                 autocomplete="userid"
-                label="User Id"
+                label="Email"
                 :rules="[rules.required]"
                 :append-icon="'mdi-account-box'"
-                hint="Enter your user id."
+                hint="Enter your login email."
               ></v-text-field>
             </v-col>
             <v-col md="12"></v-col>
@@ -24,7 +20,7 @@
               <v-text-field
                 name="password"
                 autocomplete="password"
-                v-model="registerPass"
+                v-model="loginPass"
                 label="Enter your password"
                 hint="At least 8 characters."
                 :rules="[rules.max20Chars]"
@@ -37,15 +33,10 @@
             <v-col cols="12" md="6" class="pt-3 text-right">
               <v-btn outlined to="/" class="mr-5">Cancel</v-btn>
               <span class="text-center">
-                <v-btn type="submit" color="primary" class="mr-3">Login</v-btn>
+                <v-btn @click="validateAndLogin" color="primary" class="mr-3">
+                  Login
+                </v-btn>
                 <br />
-
-                <a
-                  class="pt-3 caption grey--text text-darken-5"
-                  style="text-decoration: none"
-                  @click="confirmAndPassReset"
-                  >Forgot Password?</a
-                >
               </span>
             </v-col>
             <v-col md="12"></v-col>
@@ -62,8 +53,6 @@
 
 <script>
 import { mapMutations, mapActions } from "vuex";
-import { sync } from "vuex-pathify";
-
 import PgtUtilMix from "../mixins/PgtUtilMix.vue";
 
 export default {
@@ -74,41 +63,38 @@ export default {
   data() {
     return {
       validInput: true,
-      passShow: false
+      passShow: false,
+      loginEmail: "",
+      loginPass: "",
+      loginError: "",
     };
   },
-  computed: {
-    ...sync("authentication", [
-      "registerUserId",
-      "registerEmail",
-      "registerPass",
-      "registerError"
-    ])
-  },
+
   methods: {
-    // ...mapMutations("authentication", [
-    //   "setRegisterUserId",
-    //   "setRegisterPass",
-    //   "setRegisterError"
-    // ]),
-    ...mapActions("authentication", ["login", "resetPasswordInitiate"]),
-    ...mapMutations("alert", ["setAlert"]),
+    ...mapActions("auth", ["authentticate"]),
     ...mapMutations("snackbar", ["setSnack"]),
+    ...mapMutations("pref", ["setLeftDrawOpen"]),
 
     validateAndLogin() {
       if (this.$refs.form.validate()) {
-        this.login();
+        this.$store
+          .dispatch("auth/authenticate", {
+            strategy: "local",
+            email: this.loginEmail,
+            password: this.loginPass,
+          })
+          .then((data) => {
+            this.setLeftDrawOpen(true);
+            this.$router.push("/");
+          })
+          .catch((e) => {
+            this.setSnack({ message: "Invalid login.", color: "error" });
+            console.error("error", e);
+          });
+      } else {
+        this.setSnack({ message: "Error validating data.", color: "error" });
       }
     },
-
-    confirmAndPassReset() {
-      if (this.registerUserId != "") {
-        window.confirm("Do you want to reset your password?") &&
-          this.resetPasswordInitiate();
-      } else {
-        window.alert("Enter your user id to reset password.");
-      }
-    }
-  }
+  },
 };
 </script>

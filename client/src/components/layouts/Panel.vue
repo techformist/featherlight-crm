@@ -20,14 +20,14 @@
         <slot name="toolbar-extn"></slot>
       </template>
 
-      <v-progress-linear
+      <!-- <v-progress-linear
         :active="loading"
         :loading="loading"
         :indeterminate="true"
         bottom
         absolute
         color="#2196F3"
-      />
+      /> -->
     </v-toolbar>
 
     <Alert />
@@ -47,16 +47,16 @@ export default {
   props: {
     title: String,
     icon: String,
-    extn: Boolean
+    extn: Boolean,
   },
   data() {
     return {};
   },
   computed: {
-    ...mapState(["loading"])
+    ...mapState(["loading"]),
   },
   components: {
-    Alert: () => import("../util/Alert")
-  }
+    Alert: () => import("../util/Alert"),
+  },
 };
 </script>

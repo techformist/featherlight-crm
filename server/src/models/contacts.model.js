@@ -20,7 +20,7 @@ class contacts extends Model {
         phone: { type: "string", maxLength: 25 },
         status_cd: {
           type: "string",
-          enum: ["active", "disabled"],
+          enum: ["active", "inactive"],
           default: "active",
         },
         address: {

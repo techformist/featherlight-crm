@@ -28,7 +28,13 @@ export default {
   components: {
     Toolbar,
     Footer,
-    Snackbar: () => import("./components/util/Snackbar")
+    Snackbar: () => import("./components/util/Snackbar"),
+  },
+
+  computed: {
+    isLoggedIn() {
+      return !!this.$store.auth.accessToken;
+    },
   },
 
   filters: {
@@ -41,10 +47,10 @@ export default {
       if (!value) value = 0;
       return value.toLocaleString("en-IN", {
         style: "currency",
-        currency: "INR"
+        currency: "INR",
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

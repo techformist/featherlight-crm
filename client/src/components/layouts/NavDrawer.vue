@@ -53,35 +53,6 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
-
-    <span v-if="isOrgAdmin" dense>
-      <v-toolbar
-        dense
-        tile
-        flat
-        class="subtitle-2 mt-5 elevation-1"
-        height="35"
-      >
-        <v-avatar class="mr-3">
-          <v-icon disabled>mdi-account-key</v-icon>
-        </v-avatar>
-        <span class="grey--text">Admin</span>
-      </v-toolbar>
-
-      <v-list dense>
-        <v-list-item v-for="(item, i) in adminItems" :key="i" :to="item.to">
-          <v-list-item-avatar>
-            <v-icon color="item.iconColor">{{ item.icon }}</v-icon>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title
-              v-html="item.title"
-              class="body-2"
-            ></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </span>
   </div>
 </template>
 
@@ -89,27 +60,26 @@
 import { mapGetters, mapState } from "vuex";
 export default {
   computed: {
-    ...mapGetters("authentication", ["isLoggedIn", "isOrgAdmin"]),
-    ...mapState("authentication", ["user"]),
-    ...mapState(["loading"]),
-    formattedUserId() {
-      let userId = this.user && this.user.userid;
-      if (userId && userId.length > 12)
-        userId = `${this.user.userid.substr(0, 10)}..`;
+    ...mapGetters(["isLoggedIn"]),
+    ...mapState("auth", ["user"]),
 
-      return userId;
-    }
+    formattedUserId() {
+      let userName = this.user && this.user.name;
+      if (userName && userName.length > 12)
+        userName = `${this.user.userid.substr(0, 10)}..`;
+
+      return userName;
+    },
   },
   props: {
     anonItems: Array,
     anonNavItems: Array,
     userItems: Array,
-    adminItems: Array
   },
   methods: {
     goGo(to) {
       this.$router.go(to);
-    }
-  }
+    },
+  },
 };
 </script>
