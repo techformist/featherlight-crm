@@ -29,7 +29,7 @@
               hide-default-footer
             >
               <template v-slot:item="props">
-                <tr @click="activeContact = props.item">
+                <tr>
                   <td>{{ props.item.first_name }}</td>
                   <td>{{ props.item.last_name }}</td>
                   <td>{{ props.item.title }}</td>
